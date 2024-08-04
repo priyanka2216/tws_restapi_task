@@ -3,7 +3,7 @@ from django.contrib.auth.hashers import check_password
 from store.models.customer import Customer
 from django.views import View
 
-#*views.py main jo login ka code kiya tha usko hum ne sparete file main rkh diya login.py file bna ke
+
 class Login(View):
     return_url= None
     def get(self,request):

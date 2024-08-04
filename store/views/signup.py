@@ -17,7 +17,7 @@ class Signup(View):
         email = postData.get('email')
         password = postData.get('password')
 
-        # **signup page save krne pe jo data hum ne file kiya vo na delete ho or jo error hai vo file kre hum**
+        
         value = {
             'first_name': first_name,
             'last_name': last_name,
@@ -64,7 +64,7 @@ class Signup(View):
 
         elif len(customer.email) < 5:
             error_massage = "Email Must be 5 character long"
-            # ****ye btayega agar customer ka email pehle se registered hai toh error dega*****
+
         elif customer.isExists():
             error_massage = 'Email Address Already Registered'
 

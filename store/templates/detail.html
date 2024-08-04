@@ -14,7 +14,6 @@
             <p><strong>Category:</strong> {{ product.category.name }}</p>
             <p><strong>Description:</strong> {{ product.description }}</p>
             <p><strong>Date Added:</strong> {{ product.date_added|date:"F j, Y" }}</p>
-
             <form action="{% url 'update_cart' %}" method="post">
                 {% csrf_token %}
                 <input type="hidden" name="product_id" value="{{ product.id }}">

@@ -8,26 +8,22 @@ from rest_framework.views import APIView
 
 class TopProductsAPIView(APIView):
     def get(self, request):
-        # Current time
+       
         now = timezone.now()
 
-        # Calculate the time range for the last day and last week
         last_day = now - timedelta(days=1)
         last_week = now - timedelta(weeks=1)
 
-        # Get top 5 products all time
         top_all_time = ProductRetrieval.objects.values('product_id').annotate(
             count=Count('product_id')).order_by('-count')[:5]
 
-        # Get top 5 products last day
         top_last_day = ProductRetrieval.objects.filter(retrieval_time__gte=last_day).values(
             'product_id').annotate(count=Count('product_id')).order_by('-count')[:5]
 
-        # Get top 5 products last week
+
         top_last_week = ProductRetrieval.objects.filter(retrieval_time__gte=last_week).values(
             'product_id').annotate(count=Count('product_id')).order_by('-count')[:5]
 
-        # Convert product IDs to product names
         def convert_to_product_details(queryset):
             return [
                 {
